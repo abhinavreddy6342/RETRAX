@@ -1,0 +1,159 @@
+[
+  {
+    "id": "demo-memory-001",
+    "incident_key": "INC-2026-0918",
+    "memory_type": "incident_experience",
+    "service": "payments",
+    "occurred_at": "2026-09-17T20:07:00Z",
+    "content": "Payments API database connection exhaustion occurred during a traffic spike. The incident was associated with a misconfigured application connection pool. Reducing the application connection pool size and recycling affected application pods resolved the incident.",
+    "tags": [
+      "payments",
+      "database",
+      "postgresql",
+      "connection-exhaustion",
+      "connection-pool",
+      "traffic-spike",
+      "resolved"
+    ]
+  },
+  {
+    "id": "demo-memory-002",
+    "incident_key": "INC-2026-0918",
+    "memory_type": "root_cause",
+    "service": "payments",
+    "occurred_at": "2026-09-17T20:15:00Z",
+    "content": "Root cause for INC-2026-0918: the number of retained database connections per application instance exceeded available database capacity.",
+    "tags": [
+      "payments",
+      "root-cause",
+      "database",
+      "connection-pool",
+      "capacity"
+    ]
+  },
+  {
+    "id": "demo-memory-003",
+    "incident_key": "INC-2026-0918",
+    "memory_type": "successful_action",
+    "service": "payments",
+    "occurred_at": "2026-09-17T20:18:00Z",
+    "content": "Engineering successfully inspected PostgreSQL active connections to confirm connection exhaustion during incident INC-2026-0918.",
+    "tags": [
+      "payments",
+      "successful-action",
+      "postgresql",
+      "active-connections",
+      "verification"
+    ]
+  },
+  {
+    "id": "demo-memory-004",
+    "incident_key": "INC-2026-0918",
+    "memory_type": "successful_action",
+    "service": "payments",
+    "occurred_at": "2026-09-17T20:24:00Z",
+    "content": "Reducing the application connection pool size and recycling affected application pods resolved incident INC-2026-0918.",
+    "tags": [
+      "payments",
+      "successful-action",
+      "connection-pool",
+      "pod-recycle",
+      "resolved"
+    ]
+  },
+  {
+    "id": "demo-memory-005",
+    "incident_key": "INC-2026-0918",
+    "memory_type": "verification",
+    "service": "payments",
+    "occurred_at": "2026-09-17T20:31:00Z",
+    "content": "After remediation during INC-2026-0918, database connection usage dropped below 60% and Payments API 5xx errors returned to baseline.",
+    "tags": [
+      "payments",
+      "verification",
+      "database",
+      "connection-usage",
+      "5xx",
+      "recovery"
+    ]
+  },
+  {
+    "id": "demo-memory-006",
+    "incident_key": "INC-2026-0918",
+    "memory_type": "failed_action",
+    "service": "payments",
+    "occurred_at": "2026-09-17T20:20:00Z",
+    "content": "An attempt to increase database max_connections immediately during incident INC-2026-0918 failed because database capacity could not be safely increased without broader infrastructure changes.",
+    "tags": [
+      "payments",
+      "failed-action",
+      "database",
+      "max_connections",
+      "do-not-repeat",
+      "infrastructure-capacity"
+    ]
+  },
+  {
+    "id": "demo-memory-007",
+    "incident_key": "INC-2026-0922",
+    "memory_type": "incident_experience",
+    "service": "checkout",
+    "occurred_at": "2026-09-22T20:07:00Z",
+    "content": "Checkout latency increased because of payment dependency timeouts during transient load. Investigation identified downstream payment saturation as the important failure condition.",
+    "tags": [
+      "checkout",
+      "payments",
+      "timeout",
+      "latency",
+      "downstream-saturation"
+    ]
+  },
+  {
+    "id": "demo-memory-008",
+    "incident_key": "INC-2026-0922",
+    "memory_type": "failed_action",
+    "service": "checkout",
+    "occurred_at": "2026-09-22T20:15:00Z",
+    "content": "An attempt to increase the checkout request timeout during INC-2026-0922 failed because it increased queued requests without resolving downstream payment saturation.",
+    "tags": [
+      "checkout",
+      "failed-action",
+      "timeout",
+      "queued-requests",
+      "downstream-saturation",
+      "do-not-repeat"
+    ]
+  },
+  {
+    "id": "demo-memory-009",
+    "incident_key": "INC-2026-0922",
+    "memory_type": "successful_action",
+    "service": "checkout",
+    "occurred_at": "2026-09-22T20:22:00Z",
+    "content": "Reducing retry amplification and restoring payment capacity resolved the checkout incident. Downstream saturation decreased and checkout latency recovered.",
+    "tags": [
+      "checkout",
+      "successful-action",
+      "retry-amplification",
+      "payment-capacity",
+      "recovery"
+    ]
+  },
+  {
+    "id": "demo-memory-010",
+    "incident_key": "INC-2026-0922",
+    "memory_type": "lesson",
+    "service": "payments",
+    "occurred_at": "2026-09-22T20:30:00Z",
+    "content": "Before modifying database capacity, check recent deployment or configuration changes and validate application connection-pool behavior. Avoid increasing database limits without confirming infrastructure capacity.",
+    "tags": [
+      "lesson",
+      "payments",
+      "database",
+      "connection-pool",
+      "deployment",
+      "configuration",
+      "capacity"
+    ]
+  }
+]
